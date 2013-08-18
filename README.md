@@ -19,6 +19,9 @@ bower install cross-console
  - allows environment differences. While in 'production' console is disabled. This keeps errant `window.console` from breaking a page or showing up to a user.
  - creates the ability to send console.error to another Function while in production (for easier error management like sending an email)
 
+# Coming soon
+ - I haven't fully tested the ability to use this in Node due to the conflicts that may occur with `console`. I'll update the repository and add to NPM when that has been sorted out
+ 
 # License
 The MIT License (MIT)
 
