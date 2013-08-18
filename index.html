@@ -31,37 +31,113 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="cross-console-script" class="anchor" href="#cross-console-script"><span class="octicon octicon-link"></span></a>Cross-Console script</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Sometimes you just need to control the console. This script provides you with a way to control and take advantage of your console for what it was meant to do (log stuff). Leave the debugging to your breakpoints, start logging your code!</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h1>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h1>
+
+<h2>
+<a name="via-bower" class="anchor" href="#via-bower"><span class="octicon octicon-link"></span></a>Via bower</h2>
+
+<pre><code>bower install cross-console
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>
+<a name="via-npm" class="anchor" href="#via-npm"><span class="octicon octicon-link"></span></a>Via NPM</h2>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<pre><code>npm install cross-console
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<h2>
+<a name="download-manually" class="anchor" href="#download-manually"><span class="octicon octicon-link"></span></a>Download Manually</h2>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<ul>
+<li>Download the files using the GitHub .zip download option</li>
+<li>Use either the compressed <code>bin/cross-console.min.js</code> or the <code>lib/cross-console.js</code> file.</li>
+</ul><h1>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<ul>
+<li>attempts to implements console in all environments</li>
+<li>allows environment differences. While in 'production' console is disabled. This keeps errant <code>window.console</code> from breaking a page or showing up to a user.</li>
+<li>creates the ability to send console.error to another Function while in production (for easier error management like sending an email)</li>
+</ul><h1>
+<a name="settings" class="anchor" href="#settings"><span class="octicon octicon-link"></span></a>Settings</h1>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>To change from the default settings, just access the code via the window or root object.</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">settings</span>
+</pre></div>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<h2>
+<a name="windowcconsolesettingsstandby" class="anchor" href="#windowcconsolesettingsstandby"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.standBy</code>
+</h2>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<blockquote>
+<p>default <code>false</code> ( boolean )</p>
+</blockquote>
+
+<p>Stand By will effectively turn off CConsole. It will act as if it was not even there.</p>
+
+<h2>
+<a name="windowcconsolesettingsdebug" class="anchor" href="#windowcconsolesettingsdebug"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.debug</code>
+</h2>
+
+<blockquote>
+<p>default <code>false</code> ( boolean )</p>
+</blockquote>
+
+<p>Debug turns on all logs so that the console will light up with everything that is thrown at it.</p>
+
+<h2>
+<a name="windowcconsolesettingsenvironment" class="anchor" href="#windowcconsolesettingsenvironment"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.environment</code>
+</h2>
+
+<blockquote>
+<p>default <code>production</code> ( string: <code>development</code> || <code>production</code> )</p>
+</blockquote>
+
+<p>This is the smartest addition to the code. Effectively, you can be in 'development' mode to be able to see all <code>console.error</code> and <code>console.warn</code> come through. If you are in <code>production</code> mode you will not see anything. If debug is on, it will overwrite this setting and allow everything to come through.</p>
+
+<h2>
+<a name="windowcconsolesettingsnotify" class="anchor" href="#windowcconsolesettingsnotify"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.notify</code>
+</h2>
+
+<blockquote>
+<p>default <code>function(error, identifier) { return; }</code> ( function )</p>
+</blockquote>
+
+<p>You can overwrite this functionality in your own code. This function will be called for every <code>console.error</code> that occurs. This allows you to have a second set of loggin occur on that error, like a server backend to track them or graph them, etc.</p>
+
+<ul>
+<li>error : this is the string that was given to console.error</li>
+<li>identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.</li>
+</ul><h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<p>The MIT License (MIT)</p>
+
+<p>Copyright (c) 2013 <a href="mailto:Drew@geedew.com">Drew@geedew.com</a> </p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
       </section>
     </div>
 
