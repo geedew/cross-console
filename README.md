@@ -61,11 +61,18 @@ You can overwrite this functionality in your own code. This function will be cal
 
 ## Basic changing of settings
 ```js
+window.console.warn('Will not show up due to defaults');
 // Change to development and debug
 window.cconsole.settings.environment = 'development';
-window.cconsole.settings.debug = true;
+window.console.warn('Warns will show up while in development');
 
-window.console.log('Will show up in console');
+window.cconsole.settings.debug = true;
+window.console.log('Everything will show up in console');
+
+window.cconsole.settings.standBy = true;
+window.console.log('Actually just using the log if it`s there');
+
+// window.cconsole.settings.history //> array of all of the above, except the last console log because standBy was turned on
 ```
 
 ## Catching console.error in production
