@@ -1,6 +1,19 @@
 # Cross-Console script
 Sometimes you just need to control the console.
 
+# Install
+
+## Via bower
+```
+bower install cross-console
+```
+
+## Download Manually
+
+* Download the files using the GitHub .zip download option
+* Use either the compressed `bin/cross-console.min.js` or the `lib/cross-console.js` file.
+
+
 # Features
  - attempts to implements console in all environments
  - allows environment differences. While in 'production' console is disabled. This keeps errant `window.console` from breaking a page or showing up to a user.
