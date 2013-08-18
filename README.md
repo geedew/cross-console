@@ -1,11 +1,16 @@
 # Cross-Console script
-Sometimes you just need to control the console.
+Sometimes you just need to control the console. This script provides you with a way to control and take advantage of your console for what it was meant to do (log stuff). Leave the debugging to your breakpoints, start logging your code!
 
 # Install
 
 ## Via bower
 ```
 bower install cross-console
+```
+
+## Via NPM
+```
+npm install cross-console
 ```
 
 ## Download Manually
@@ -19,9 +24,35 @@ bower install cross-console
  - allows environment differences. While in 'production' console is disabled. This keeps errant `window.console` from breaking a page or showing up to a user.
  - creates the ability to send console.error to another Function while in production (for easier error management like sending an email)
 
-# Coming soon
- - I haven't fully tested the ability to use this in Node due to the conflicts that may occur with `console`. I'll update the repository and add to NPM when that has been sorted out
- 
+# Settings
+To change from the default settings, just access the code via the window or root object.
+```js
+window.cconsole.settings
+```
+
+## `window.cconsole.settings.standBy`
+>default `false` ( boolean )
+
+Stand By will effectively turn off CConsole. It will act as if it was not even there.
+
+## `window.cconsole.settings.debug`
+>default `false` ( boolean )
+
+Debug turns on all logs so that the console will light up with everything that is thrown at it.
+
+## `window.cconsole.settings.environment`
+>default `production` ( string: `development` || `production` )
+
+This is the smartest addition to the code. Effectively, you can be in 'development' mode to be able to see all `console.error` and `console.warn` come through. If you are in `production` mode you will not see anything. If debug is on, it will overwrite this setting and allow everything to come through.
+
+## `window.cconsole.settings.notify`
+>default `function(error, identifier) { return; }` ( function )
+
+You can overwrite this functionality in your own code. This function will be called for every `console.error` that occurs. This allows you to have a second set of loggin occur on that error, like a server backend to track them or graph them, etc.
+
+ - error : this is the string that was given to console.error
+ - identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.
+
 # License
 The MIT License (MIT)
 
