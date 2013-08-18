@@ -5,12 +5,12 @@ Sometimes you just need to control the console. This script provides you with a 
 
 ## Via bower
 ```
-bower install cross-console
+$> bower install cross-console 
 ```
 
 ## Via NPM
 ```
-npm install cross-console
+$> npm install cross-console
 ```
 
 ## Download Manually
@@ -18,6 +18,10 @@ npm install cross-console
 * Download the files using the GitHub .zip download option
 * Use either the compressed `bin/cross-console.min.js` or the `lib/cross-console.js` file.
 
+## Add a script path in your source
+```html
+<script type="text/javascript" src="/bin/cross-console.min.js"></script>
+```
 
 # Features
  - attempts to implements console in all environments
@@ -52,6 +56,27 @@ You can overwrite this functionality in your own code. This function will be cal
 
  - error : this is the string that was given to console.error
  - identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.
+
+# Examples
+
+## Basic changing of settings
+```js
+// Change to development and debug
+window.cconsole.settings.environment = 'development';
+window.cconsole.settings.debug = true;
+
+window.console.log('Will show up in console');
+```
+
+## Catching console.error in production
+```js
+window.cconsole.settings.notify = function(error, key) {
+ mailEngineers(error, key);
+};
+
+console.error('This should not have happened'); // runs notify -> presumably sends emails to engineers
+```
+
 
 # License
 The MIT License (MIT)
