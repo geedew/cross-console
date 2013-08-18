@@ -1,0 +1,24 @@
+{
+	"name":"cross-console",
+	"version":"0.1.1",
+	"description":"A robust console manager for the web. Manages when the console can be used, retains a history and also allows for triggering other functions in the case of console.error",
+	"contributors":["Drew Wilson <drew@geedew.com> (http://geedew.com)"],
+	"homepage":"https://github.com/geedew/cross-console/",
+	"licenses":[{
+		"type":"MIT",
+		"url":"https://github.com/geedew/cross-console/blob/master/LICENSE"
+	}],
+	"repository":{
+		"type":"git",
+		"url":"https://github.com/geedew/cross-console.git"
+	},
+	"main": "lib",
+	"bin" :{
+		"cconsole":"bin/cconsole.min.js"
+	},
+	"devDependencies": {
+	    "grunt": "~0.4.1",
+	    "grunt-contrib-jshint": "~0.6.0",
+	    "grunt-contrib-uglify": "~0.2.2"
+  	}
+}
