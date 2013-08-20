@@ -28,9 +28,20 @@ npm install cross-console
 Some consoles give useful information like timing and memory usage; so you still have access to that
 
 # Settings
-To change from the default settings, just access the code via the window or root object.
+To change from the default settings, just access the code via the window or root object. Notice that `cconsole` and `console` are interchangeable
 ```js
-window.cconsole.settings
+window.cconsole.settings || window.console.settings
+```
+
+You can also change the settings by accessing the `set` function and passing an object of key:value pairs of the following.
+```js
+window.console.set({
+	"environment": "production",
+	"debug": false,
+	"notify":function(msg,identifier) {
+		alert(msg,identifier);
+	}
+});
 ```
 
 ## `window.cconsole.settings.standBy`

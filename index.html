@@ -9,7 +9,7 @@
 
 		<script>
 			console.log('Should not be in the console. - debug false');
-			console.error('Should be in the console - environment development');
+			console.log('Should be in the console - environment development');
 
 			window.cconsole.settings.debug=true;
 			console.log('Should be in the console - debug true');
@@ -19,11 +19,13 @@
 			console.warn('Bad info');
 			console.groupEnd('MyGroup');
 
-			window.cconsole.settings.environment='production';
-			window.cconsole.settings.debug=false;
-			window.cconsole.settings.notify=function(msg,identifier) {
-				alert(msg,identifier);
-			};
+			window.console.set({
+				"environment": "production",
+				"debug": false,
+				"notify":function(msg,identifier) {
+					alert(msg,identifier);
+				}
+			});
 			console.error('No error, but my callback should fire!');
 
 
