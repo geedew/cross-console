@@ -24,6 +24,9 @@ npm install cross-console
  - allows environment differences. While in 'production' console is disabled. This keeps errant `window.console` from breaking a page or showing up to a user.
  - creates the ability to send console.error to another Function while in production (for easier error management like sending an email)
 
+# Accessing the original console
+Some consoles give useful information like timing and memory usage; so you still have access to that
+
 # Settings
 To change from the default settings, just access the code via the window or root object.
 ```js
@@ -52,6 +55,8 @@ You can overwrite this functionality in your own code. This function will be cal
 
  - error : this is the string that was given to console.error
  - identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.
+
+
 
 # License
 The MIT License (MIT)
