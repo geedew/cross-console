@@ -6,7 +6,7 @@ Sometimes you just need to control the console. This script provides you with a 
  - can have console behave differently in `development` versus `production`
  - ability to send console.error to another Function while in production (for easier error management like sending an email)
  - using localStorage, a history is kept of all previous logs, limited to 100 ( configurable )
- - add a filter so that you only see the logs you want
+ - add a filter so that you only see the logs you want ( will persist accross refresh in a browser )
 
 # Install
 
@@ -68,16 +68,15 @@ This is the smartest addition to the code. Effectively, you can be in 'developme
 ## `window.cconsole.settings.notify`
 >default `function(error, identifier) { return; }` ( function )
 
-
 You can overwrite this functionality in your own code. This function will be called for every `console.error` that occurs. This allows you to have a second set of loggin occur on that error, like a server backend to track them or graph them, etc.
 
  - error : this is the string that was given to console.error
  - identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.
 
-## `window.cconsole.settings.filterLog`
+## `window.cconsole.settings.filter`
 >default `false` ( string )
 
-Allows the code to only show things in the console log that fit the filter that's applied. Use the `console.setFilter(string)` to apply a filter and `console.clearFilter()` to remove the filter.  __It will not filter out errors or warnings__
+Allows the code to only show things in the console log that fit the filter that's applied. Use the `console.setFilter(string)` to apply a filter and `console.clearFilter()` to remove the filter.  __It will not filter out errors or warnings and will attempt to persist if localStorage and JSON are available using the key 'CC.filter'__
 
 ## `window.cconsole.settings.history`
 >default `100` ( integer )
