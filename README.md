@@ -66,10 +66,21 @@ This is the smartest addition to the code. Effectively, you can be in 'developme
 ## `window.cconsole.settings.notify`
 >default `function(error, identifier) { return; }` ( function )
 
+
 You can overwrite this functionality in your own code. This function will be called for every `console.error` that occurs. This allows you to have a second set of loggin occur on that error, like a server backend to track them or graph them, etc.
 
  - error : this is the string that was given to console.error
  - identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.
+
+## `window.cconsole.settings.filterLog`
+>default `false` ( string )
+
+Allows the code to only show things in the console log that fit the filter that's applied. Use the `console.setFilter(string)` to apply a filter and `console.clearFilter()` to remove the filter. ** It will not filter out errors or warnings **
+
+## `window.cconsole.settings.history`
+>default `100` ( integer )
+
+This is the length of the history that is kept. Having a large enough number for good use, and a low enough number to stop overgrowth is essential
 
 # Examples
 
@@ -97,6 +108,13 @@ window.cconsole.settings.notify = function(error, key) {
 
 console.error('This should not have happened'); // runs notify -> presumably sends emails to engineers
 ```
+
+## Filtering out only the messages you expect to see
+window.cconsole.setFilter('myfeature');
+
+console.log('somefeature','this isnt showing');
+console.log('myfeature', 'this is showing');
+console.warn('this will always show up, so will errors');
 
 
 # License
