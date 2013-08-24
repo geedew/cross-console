@@ -80,7 +80,7 @@ Allows the code to only show things in the console log that fit the filter that'
 ## `window.cconsole.settings.history`
 >default `100` ( integer )
 
-This is the length of the history that is kept. Having a large enough number for good use, and a low enough number to stop overgrowth is essential
+This is the length of the history that is kept. Having a large enough number for good use, and a low enough number to stop overgrowth is essential. ** History will perist in localStorage if JSON and storage is available, using the key `CC.history` **
 
 # Examples
 
