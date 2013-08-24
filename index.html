@@ -42,13 +42,13 @@
 <h2>
 <a name="via-bower" class="anchor" href="#via-bower"><span class="octicon octicon-link"></span></a>Via bower</h2>
 
-<pre><code>bower install cross-console
+<pre><code>$&gt; bower install cross-console 
 </code></pre>
 
 <h2>
 <a name="via-npm" class="anchor" href="#via-npm"><span class="octicon octicon-link"></span></a>Via NPM</h2>
 
-<pre><code>npm install cross-console
+<pre><code>$&gt; npm install cross-console
 </code></pre>
 
 <h2>
@@ -57,7 +57,13 @@
 <ul>
 <li>Download the files using the GitHub .zip download option</li>
 <li>Use either the compressed <code>bin/cross-console.min.js</code> or the <code>lib/cross-console.js</code> file.</li>
-</ul><h1>
+</ul><h2>
+<a name="add-a-script-path-in-your-source" class="anchor" href="#add-a-script-path-in-your-source"><span class="octicon octicon-link"></span></a>Add a script path in your source</h2>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"/bin/cross-console.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<h1>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
 
 <ul>
@@ -65,11 +71,27 @@
 <li>allows environment differences. While in 'production' console is disabled. This keeps errant <code>window.console</code> from breaking a page or showing up to a user.</li>
 <li>creates the ability to send console.error to another Function while in production (for easier error management like sending an email)</li>
 </ul><h1>
+<a name="accessing-the-original-console" class="anchor" href="#accessing-the-original-console"><span class="octicon octicon-link"></span></a>Accessing the original console</h1>
+
+<p>Some consoles give useful information like timing and memory usage; so you still have access to that</p>
+
+<h1>
 <a name="settings" class="anchor" href="#settings"><span class="octicon octicon-link"></span></a>Settings</h1>
 
-<p>To change from the default settings, just access the code via the window or root object.</p>
+<p>To change from the default settings, just access the code via the window or root object. Notice that <code>cconsole</code> and <code>console</code> are interchangeable</p>
 
-<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">settings</span>
+<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">settings</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">settings</span>
+</pre></div>
+
+<p>You can also change the settings by accessing the <code>set</code> function and passing an object of key:value pairs of the following.</p>
+
+<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span>
+    <span class="s2">"environment"</span><span class="o">:</span> <span class="s2">"production"</span><span class="p">,</span>
+    <span class="s2">"debug"</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="s2">"notify"</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="nx">identifier</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span><span class="nx">identifier</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 
 <h2>
@@ -115,7 +137,67 @@
 <ul>
 <li>error : this is the string that was given to console.error</li>
 <li>identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.</li>
-</ul><h1>
+</ul><h2>
+<a name="windowcconsolesettingsfilterlog" class="anchor" href="#windowcconsolesettingsfilterlog"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.filterLog</code>
+</h2>
+
+<blockquote>
+<p>default <code>false</code> ( string )</p>
+</blockquote>
+
+<p>Allows the code to only show things in the console log that fit the filter that's applied. Use the <code>console.setFilter(string)</code> to apply a filter and <code>console.clearFilter()</code> to remove the filter.  <strong>It will not filter out errors or warnings</strong></p>
+
+<h2>
+<a name="windowcconsolesettingshistory" class="anchor" href="#windowcconsolesettingshistory"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.history</code>
+</h2>
+
+<blockquote>
+<p>default <code>100</code> ( integer )</p>
+</blockquote>
+
+<p>This is the length of the history that is kept. Having a large enough number for good use, and a low enough number to stop overgrowth is essential. <strong>History will perist in localStorage if JSON and storage is available, using the key <code>CC.history</code></strong></p>
+
+<h1>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h1>
+
+<h2>
+<a name="basic-changing-of-settings" class="anchor" href="#basic-changing-of-settings"><span class="octicon octicon-link"></span></a>Basic changing of settings</h2>
+
+<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">'Will not show up due to defaults'</span><span class="p">);</span>
+<span class="c1">// Change to development and debug</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">environment</span> <span class="o">=</span> <span class="s1">'development'</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">'Warns will show up while in development'</span><span class="p">);</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">debug</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Everything will show up in console'</span><span class="p">);</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">standBy</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Actually just using the log if it`s there'</span><span class="p">);</span>
+
+<span class="c1">// window.cconsole.settings.history //&gt; array of all of the above, except the last console log because standBy was turned on</span>
+</pre></div>
+
+<h2>
+<a name="catching-consoleerror-in-production" class="anchor" href="#catching-consoleerror-in-production"><span class="octicon octicon-link"></span></a>Catching console.error in production</h2>
+
+<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">settings</span><span class="p">.</span><span class="nx">notify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+ <span class="nx">mailEngineers</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">key</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">'This should not have happened'</span><span class="p">);</span> <span class="c1">// runs notify -&gt; presumably sends emails to engineers</span>
+</pre></div>
+
+<h2>
+<a name="filtering-out-only-the-messages-you-expect-to-see" class="anchor" href="#filtering-out-only-the-messages-you-expect-to-see"><span class="octicon octicon-link"></span></a>Filtering out only the messages you expect to see</h2>
+
+<div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">setFilter</span><span class="p">(</span><span class="s1">'myfeature'</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'somefeature'</span><span class="p">,</span><span class="s1">'this isnt showing'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'myfeature'</span><span class="p">,</span> <span class="s1">'this is showing'</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">'this will always show up, so will errors'</span><span class="p">);</span>
+</pre></div>
+
+<h1>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
 
 <p>The MIT License (MIT)</p>
