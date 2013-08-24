@@ -75,12 +75,12 @@ You can overwrite this functionality in your own code. This function will be cal
 ## `window.cconsole.settings.filterLog`
 >default `false` ( string )
 
-Allows the code to only show things in the console log that fit the filter that's applied. Use the `console.setFilter(string)` to apply a filter and `console.clearFilter()` to remove the filter. ** It will not filter out errors or warnings **
+Allows the code to only show things in the console log that fit the filter that's applied. Use the `console.setFilter(string)` to apply a filter and `console.clearFilter()` to remove the filter.  __It will not filter out errors or warnings__
 
 ## `window.cconsole.settings.history`
 >default `100` ( integer )
 
-This is the length of the history that is kept. Having a large enough number for good use, and a low enough number to stop overgrowth is essential. ** History will perist in localStorage if JSON and storage is available, using the key `CC.history` **
+This is the length of the history that is kept. Having a large enough number for good use, and a low enough number to stop overgrowth is essential. __History will perist in localStorage if JSON and storage is available, using the key `CC.history`__
 
 # Examples
 
@@ -110,12 +110,13 @@ console.error('This should not have happened'); // runs notify -> presumably sen
 ```
 
 ## Filtering out only the messages you expect to see
+```js
 window.cconsole.setFilter('myfeature');
 
 console.log('somefeature','this isnt showing');
 console.log('myfeature', 'this is showing');
 console.warn('this will always show up, so will errors');
-
+```
 
 # License
 The MIT License (MIT)
