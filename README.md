@@ -1,6 +1,13 @@
 # Cross-Console script
 Sometimes you just need to control the console. This script provides you with a way to control and take advantage of your console for what it was meant to do (log stuff). Leave the debugging to your breakpoints, start logging your code!
 
+# Features
+ - attempts to implement console in all environments, or extends the console available.
+ - can have console behave differently in `development` versus `production`
+ - ability to send console.error to another Function while in production (for easier error management like sending an email)
+ - using localStorage, a history is kept of all previous logs, limited to 100 ( configurable )
+ - add a filter so that you only see the logs you want
+
 # Install
 
 ## Via bower
@@ -22,11 +29,6 @@ $> npm install cross-console
 ```html
 <script type="text/javascript" src="/bin/cross-console.min.js"></script>
 ```
-
-# Features
- - attempts to implements console in all environments
- - allows environment differences. While in 'production' console is disabled. This keeps errant `window.console` from breaking a page or showing up to a user.
- - creates the ability to send console.error to another Function while in production (for easier error management like sending an email)
 
 # Accessing the original console
 Some consoles give useful information like timing and memory usage; so you still have access to that
