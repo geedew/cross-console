@@ -117,6 +117,9 @@ window.cconsole.setFilter('myfeature');
 console.log('somefeature','this isnt showing');
 console.log('myfeature', 'this is showing');
 console.warn('this will always show up, so will errors');
+
+window.cconsole.clearFilter();
+console.log('somefeature','now shows');
 ```
 
 # License
