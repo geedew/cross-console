@@ -37,6 +37,16 @@
 <p>Sometimes you just need to control the console. This script provides you with a way to control and take advantage of your console for what it was meant to do (log stuff). Leave the debugging to your breakpoints, start logging your code!</p>
 
 <h1>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
+
+<ul>
+<li>attempts to implement console in all environments, or extends the console available.</li>
+<li>can have console behave differently in <code>development</code> versus <code>production</code>
+</li>
+<li>ability to send console.error to another Function while in production (for easier error management like sending an email)</li>
+<li>using localStorage, a history is kept of all previous logs, limited to 100 ( configurable )</li>
+<li>add a filter so that you only see the logs you want ( will persist accross refresh in a browser, history will retain all logs )</li>
+</ul><h1>
 <a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h1>
 
 <h2>
@@ -64,13 +74,6 @@
 </pre></div>
 
 <h1>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
-
-<ul>
-<li>attempts to implements console in all environments</li>
-<li>allows environment differences. While in 'production' console is disabled. This keeps errant <code>window.console</code> from breaking a page or showing up to a user.</li>
-<li>creates the ability to send console.error to another Function while in production (for easier error management like sending an email)</li>
-</ul><h1>
 <a name="accessing-the-original-console" class="anchor" href="#accessing-the-original-console"><span class="octicon octicon-link"></span></a>Accessing the original console</h1>
 
 <p>Some consoles give useful information like timing and memory usage; so you still have access to that</p>
@@ -138,14 +141,14 @@
 <li>error : this is the string that was given to console.error</li>
 <li>identifier : this is intended to be a line item that is unique to this error, to make for easier debugging.</li>
 </ul><h2>
-<a name="windowcconsolesettingsfilterlog" class="anchor" href="#windowcconsolesettingsfilterlog"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.filterLog</code>
+<a name="windowcconsolesettingsfilter" class="anchor" href="#windowcconsolesettingsfilter"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.filter</code>
 </h2>
 
 <blockquote>
 <p>default <code>false</code> ( string )</p>
 </blockquote>
 
-<p>Allows the code to only show things in the console log that fit the filter that's applied. Use the <code>console.setFilter(string)</code> to apply a filter and <code>console.clearFilter()</code> to remove the filter.  <strong>It will not filter out errors or warnings</strong></p>
+<p>Allows the code to only show things in the console log that fit the filter that's applied. Use the <code>console.setFilter(string)</code> to apply a filter and <code>console.clearFilter()</code> to remove the filter.  <strong>It will not filter out errors or warnings and will attempt to persist if localStorage and JSON are available using the key 'CC.filter'</strong></p>
 
 <h2>
 <a name="windowcconsolesettingshistory" class="anchor" href="#windowcconsolesettingshistory"><span class="octicon octicon-link"></span></a><code>window.cconsole.settings.history</code>
@@ -195,6 +198,9 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'somefeature'</span><span class="p">,</span><span class="s1">'this isnt showing'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'myfeature'</span><span class="p">,</span> <span class="s1">'this is showing'</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">'this will always show up, so will errors'</span><span class="p">);</span>
+
+<span class="nb">window</span><span class="p">.</span><span class="nx">cconsole</span><span class="p">.</span><span class="nx">clearFilter</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'somefeature'</span><span class="p">,</span><span class="s1">'now shows'</span><span class="p">);</span>
 </pre></div>
 
 <h1>
