@@ -6,32 +6,33 @@
 	<body>
 		<h1> Testing the Console </h1>
 		<script src="./lib/cross-console.js"></script>
+		<!-- <script src="./bin/cconsole.min.js"></script> -->
 
 		<script>
-			console.log('Should not be in the console. - debug false');
-			console.log('Should be in the console - environment development');
+			// console.log('Should not be in the console. - debug false');
+			// console.log('Should be in the console - environment development');
 
-			window.cconsole.settings.debug=true;
-			console.log('Should be in the console - debug true');
+			// window.cconsole.settings.debug=true;
+			// console.log('Should be in the console - debug true');
 
-			console.group('MyGroup');
-			console.info('Some info');
-			console.warn('Bad info');
-			console.groupEnd('MyGroup');
+			// console.group('MyGroup');
+			// console.info('Some info');
+			// console.warn('Bad info');
+			// console.groupEnd('MyGroup');
 
-			window.console.set({
-				"environment": "production",
-				"debug": false,
-				"notify":function(msg,identifier) {
-					alert(msg,identifier);
-				}
-			});
-			console.error('No error, but my callback should fire!');
+			// window.console.set({
+			// 	"environment": "production",
+			// 	"debug": false,
+			// 	"notify":function(msg,identifier) {
+			// 		alert(msg,identifier);
+			// 	}
+			// });
+			// console.error('No error, but my callback should fire!');
 
 
-			window.cconsole.settings.standBy=true;
-			console.log('All things are in console now.');
-			console.error('Including errors');
+			// window.cconsole.settings.standBy=true;
+			// console.log('All things are in console now.');
+			// console.error('Including errors');
 
 			window.console.set({
 				"environment": "development",
