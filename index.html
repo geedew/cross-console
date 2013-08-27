@@ -32,6 +32,18 @@
 			window.cconsole.settings.standBy=true;
 			console.log('All things are in console now.');
 			console.error('Including errors');
+
+			window.console.set({
+				"environment": "development",
+				"debug": true,
+				"notify":function(msg,identifier) { }
+			});
+
+			var parent, child;
+			parent = { 'a parent': true, child: child };
+			child = { 'a child' : true, parent: parent };
+
+			console.log('test objects that recurse', child)
 		</script>
 	</body>
 </html>
