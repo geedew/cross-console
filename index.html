@@ -9,16 +9,23 @@
 		<!-- <script src="./bin/cconsole.min.js"></script> -->
 
 		<script>
+
+			window.console.set({
+				"environment": "development",
+				"debug": true
+			});
 			console.log('Should not be in the console. - debug false');
 			console.log('Should be in the console - environment development');
 
 			window.cconsole.settings.debug=true;
 			console.log('Should be in the console - debug true');
 
+			console.time('starttime');
 			console.group('MyGroup');
 			console.info('Some info');
 			console.warn('Bad info');
 			console.groupEnd('MyGroup');
+			console.timeEnd('starttime');
 
 			window.console.set({
 				"environment": "production",
