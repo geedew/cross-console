@@ -1,6 +1,6 @@
 {
   "name": "cross-console",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "A robust console manager for the web. Manages when the console can be used, retains a history and also allows for triggering other functions in the case of console.error",
   "contributors": [
     "Drew Wilson <drew@geedew.com> (http://geedew.com)"
